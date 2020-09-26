@@ -153,10 +153,6 @@ Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallb
     return Void();
 }
 
-Return<bool> FingerprintInscreen::noDim() {
-    return false;
-}
-
 }  // namespace implementation
 }  // namespace V1_0
 }  // namespace inscreen
