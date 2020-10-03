@@ -28,16 +28,15 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # FOD animations
 EXTRA_FOD_ANIMATIONS := true
-TARGET_HAS_FOD := true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-rr
+    $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-rr/lineage-sdk
+    $(LOCAL_PATH)/overlay-lineage/lineage-sdk
 
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
@@ -182,7 +181,7 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.xiaomi_pyxis
 
 PRODUCT_COPY_FILES += \
-    vendor/rr/config/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml \
+    vendor/bliss/config/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml \
 
 # Net
 PRODUCT_PACKAGES += \
