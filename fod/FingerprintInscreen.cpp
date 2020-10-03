@@ -67,6 +67,21 @@ static void set(const std::string& path, const T& value) {
     file << value;
 }
 
+/*
+    map the polynomial function here based on the discovered points
+    ALPHA = 1.0 | BRIGHTNESS = 0
+    ALPHA = 0.7 | BRIGHTNESS = 150
+    ALPHA = 0.5 | BRIGHTNESS = 475
+    ALPHA = 0.3 | BRIGHTNESS = 950
+    ALPHA = 0.0 | BRIGHTNESS = 2047
+*/
+
+float p1 = 7.747 * pow(10, -8);
+float p2 = -0.0004924;
+float p3 = 0.6545;
+float p4 = 58.82;
+float q1 = 58.82;
+
 FingerprintInscreen::FingerprintInscreen() {
     this->mFodCircleVisible = false;
     xiaomiFingerprintService = IXiaomiFingerprint::getService();
@@ -136,11 +151,7 @@ Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /* brightness */) {
     int realBrightness = get(BRIGHTNESS_PATH, 0);
     float alpha;
 
-    if (realBrightness > 500) {
-        alpha = 1.0 - pow(realBrightness / 2047.0 * 430.0 / 600.0, 0.455);
-    } else {
-        alpha = 1.0 - pow(realBrightness / 1680.0, 0.455);
-    }
+    alpha = (p1 * pow(realBrightness, 3) + p2 * pow(realBrightness, 2) + p3 * realBrightness + p4) / (realBrightness + q1);
 
     return 255 * alpha;
 }
